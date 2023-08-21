@@ -35,7 +35,4 @@ To use this pipeline in your own Jenkins environment, you can:
 3. Configure your Jenkins job to use the appropriate credentials for Git authentication.
 4. Run the job to see the pipeline stages in action.
 
-Please note that you should customize the pipeline according to your specific needs, including repository URLs, branch names, and authentication credentials.
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
