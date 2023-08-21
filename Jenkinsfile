@@ -43,6 +43,8 @@ pipeline {
                         git config user.email "liorpoterman@gmail.com"
                         git add helloworld.py
                         git commit -m "Update helloworld.py"
+                        git remote add origin https://github.com/lior-poterman/checkmarxTest.git
+                        git fetch origin
                         git push origin main
                     '''
                 }
