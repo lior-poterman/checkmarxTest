@@ -39,11 +39,13 @@ pipeline {
 
                     // Commit and push the changes back to the repository
                     sh '''
+                        set -x
                         git config user.name "lior-poterman"
+                        git config user.email "liorpoterman@gmail.com"
                         git add helloworld.py
                         git commit -m "Update helloworld.py"
                         git push origin main
-                    '''
+'''
                 }
             }
         }
