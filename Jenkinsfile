@@ -14,7 +14,7 @@ pipeline {
                 script {
                     // Create the helloworld.py file with the specified content
                     echo "building the helloworld.py file.."
-                    sh 'echo "print(\'hello world\')" > helloworld.py'
+                    bat 'echo print("hello world") > helloworld.py'
                 }
             }
         }
@@ -24,7 +24,7 @@ pipeline {
                 script {
                     // Display the content of helloworld.py using the 'type' command
                     echo "Verifying the file content"
-                    sh 'cat helloworld.py'
+                    bat 'type helloworld.py'
                 }
             }
         }
@@ -38,18 +38,16 @@ pipeline {
                     def scmVars = checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/lior-poterman/checkmarxTest.git']]])
 
                     // Commit and push the changes back to the repository
-                    sh '''
-                        
+                    bat '''
                         git config user.name "lior-poterman"
                         git config user.email "liorpoterman@gmail.com"
                         git add helloworld.py
                         git commit -m "Update helloworld.py"
                         git push origin main
-                        
                     '''
-
                 }
             }
         }
     }
+}
 }
