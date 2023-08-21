@@ -38,13 +38,13 @@ pipeline {
                     def scmVars = checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/lior-poterman/checkmarxTest.git']]])
 
                     // Commit and push the changes back to the repository
-                    bat '''
-                        git config user.name "lior-poterman"
-                        git config user.email "liorpoterman@gmail.com"
-                        git add helloworld.py
-                        git commit -m "Update helloworld.py"
-                        git push origin main
-                    '''
+                    
+                        bat git config user.name "lior-poterman"
+                        bat git config user.email "liorpoterman@gmail.com"
+                        bat git add helloworld.py
+                        bat git commit -m "Update helloworld.py"
+                        bat git push origin main
+                    
                 }
             }
         }
