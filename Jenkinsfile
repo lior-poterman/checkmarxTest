@@ -14,7 +14,7 @@ pipeline {
                 script {
                     // Create the helloworld.py file with the specified content
                     echo "building the helloworld.py file.."
-                    bat 'echo print("hello world") > helloworld.py'
+                    sh 'echo "print(\'hello world\')" > helloworld.py'
                 }
             }
         }
@@ -24,7 +24,7 @@ pipeline {
                 script {
                     // Display the content of helloworld.py using the 'type' command
                     echo "Verifying the file content"
-                    bat 'type helloworld.py'
+                    sh 'cat helloworld.py'
                 }
             }
         }
@@ -35,19 +35,18 @@ pipeline {
                     echo "Deploying code into GitHub"
                     // The credentials you've configured in Jenkins will be used here
                     // Just specify the repository URL and Jenkins will handle authentication
-                    def scmVars = checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/lior-poterman/checkmarxTest.git']]])
+                    def scmVars = checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/Poterman/Jenkins.git']]])
 
                     // Commit and push the changes back to the repository
-                    
-                        bat git config user.name "lior-poterman"
-                        bat git config user.email "liorpoterman@gmail.com"
-                        bat git add helloworld.py
-                        bat git commit -m "Update helloworld.py"
-                        bat git push origin main
-                    
+                    sh '''
+                        git config user.email "daniel.poterman@gmail.com"
+                        git config user.name "Poterman"
+                        git add helloworld.py
+                        git commit -m "Update helloworld.py"
+                        git push -u -f origin master
+                    '''
                 }
             }
         }
     }
 }
-
