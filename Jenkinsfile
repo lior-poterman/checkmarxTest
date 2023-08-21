@@ -33,18 +33,18 @@ pipeline {
             steps {
                 script {
                     echo "Deploying code into GitHub"
-                    // The credentials you've configured in Jenkins will be used here
-                    // Just specify the repository URL and Jenkins will handle authentication
-                    def scmVars = checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/Poterman/Jenkins.git']]])
+                    // Specify the repository URL and Jenkins will handle authentication
+                    def scmVars = checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/lior-poterman/checkmarxTest.git']]])
 
                     // Commit and push the changes back to the repository
                     sh '''
-                        git config user.email "daniel.poterman@gmail.com"
-                        git config user.name "Poterman"
+                        git config user.email "liorpoterman@gmail.com"
+                        git config user.name "lior-poterman"
                         git add helloworld.py
                         git commit -m "Update helloworld.py"
-                        git push -u -f origin master
+                        git push -u -f origin main
                     '''
+                    echo "Done"
                 }
             }
         }
